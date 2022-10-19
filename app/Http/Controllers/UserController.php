@@ -14,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {   
-
-        return view('usuarios.index');
+        $users = User::paginate(1);
+        return view('usuarios.index', compact('users'));
     }
 
     /**
@@ -49,9 +49,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('usuarios.show', compact('user'));
     }
 
     /**
@@ -83,8 +83,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( User $user)
     {
-        //
+        $user->delete();
+        return  back()-> with('success','Usuario eliminado correctamente');
     }
 }

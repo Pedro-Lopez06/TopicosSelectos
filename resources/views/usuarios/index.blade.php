@@ -36,18 +36,19 @@
                          
                         </thead>
                         <tbody>
-                     
-                        <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td></td>
-                        <td></td>
-                        <td class="td-actions text-right">
+                          @foreach ($users as $user)
+                          <tr>
+                          <td>{{$user->id}} </td>
+                          <td>{{$user->name}} </td>
+                          <td>{{$user->email}}</td>
+                          <td> {{$user->created_at}}</td>
+                        
+                          <td class="td-actions text-right">
                          
-                         <a href="#" class="btn btn-info"><i class="material-icons">visibility</i></a>
+                         <a href="{{route('usuarios.show', $user->id)}}" class="btn btn-info"><i class="material-icons">visibility</i></a>
                          <a href="#" class="btn btn-warning"><i class="material-icons">edit</i></a>
 
-                          <form action ="#" method="POST" style="display:inline-block;">
+                          <form action ="{{route('usuarios.delete', $user->id)}}" method="POST" style="display:inline-block;">
                           @csrf
                           @method('DELETE')
                           <button class="btn btn-danger" type="submit" rel="toltip">
@@ -58,7 +59,7 @@
                         </td>
  
                         </tr>
-         
+                        @endforeach
                         </tbody>
  
  
@@ -67,7 +68,7 @@
                     </div>
                   </div>
                   <div class="card-footer mr-auto">
-   
+                    {{$users -> links()}}
                   </div>
                 </div>
               </div>
