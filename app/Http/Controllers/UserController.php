@@ -60,9 +60,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('usuarios.edit', compact('user'));
+
     }
 
     /**
@@ -74,7 +75,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+            $data = $request->only('name','email');
+            if (trim($request->password)=='')
+            {
+                $data=$request->except('password');
+            }
+            else{
+                $data=$request->all();
+                $data['password']=bcrypt($request->password);
+            }
+            $user->update($data);
+            return redirect()->route('usuarios.index')->with('success','Usuario actualizado correctamente');
+  
+
     }
 
     /**

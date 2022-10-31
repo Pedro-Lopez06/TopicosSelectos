@@ -50,8 +50,8 @@
                                                                 class="btn btn-info"><i
                                                                     class="material-icons">visibility</i>
                                                             </a>
-                                                            <a href="#" class="btn btn-warning"><i
-                                                                    class="material-icons">edit</i>
+                                                            <a href="{{ route('usuarios.edit', $user->id) }}"
+                                                                class="btn btn-warning"><i class="material-icons">edit</i>
                                                             </a>
                                                             <form action="{{ route('usuarios.delete', $user->id) }}"
                                                                 method="POST" style="display:inline-block;">

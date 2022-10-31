@@ -33,4 +33,6 @@ Route::get('/proveedores', [App\Http\Controllers\ProviderController::class, 'ind
 Route::get('/usuarios/create',[App\Http\Controllers\UserController::class, 'create'])->name('usuarios.create');
 Route::post('/usuarios/create',[App\Http\Controllers\UserController::class, 'store'])->name('usuarios.store');
 Route::get('/usuarios/{user}',[App\Http\Controllers\UserController::class, 'show'])->name('usuarios.show');
+Route::get('/usuario/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuario/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('usuarios.update');
 Route::delete('/usuarios/{user}',[App\Http\Controllers\UserController::class, 'destroy'])->name('usuarios.delete');
